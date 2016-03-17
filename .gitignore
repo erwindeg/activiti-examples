@@ -1,15 +1,16 @@
-.idea/
-*.iml
-*.ipr
-*.iws
+# Eclipse
 .classpath
 .project
 .settings/
-.vertx
-.gradle/
-.metadata
-build/
-target/
 
-RemoteSystemsTempFiles
-mods/
+# Intellij
+.idea/
+*.iml
+*.iws
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
