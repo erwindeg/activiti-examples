@@ -6,41 +6,26 @@
     <serviceTask id="theTask" name="Java task 1" activiti:expression="#{testBean.test(text)}" activiti:resultVariableName="text"></serviceTask>
     <sequenceFlow id="flow2" sourceRef="theTask" targetRef="theTask2"></sequenceFlow>
     <serviceTask id="theTask2" name="Java task 2" activiti:expression="#{testBean.test(text)}"></serviceTask>
-    <sequenceFlow id="flow3" sourceRef="theTask2" targetRef="theEnd"></sequenceFlow>
+    <sequenceFlow id="flow3" sourceRef="theTask2" targetRef="sendMail"></sequenceFlow>
+    <serviceTask id="sendMail" activiti:type="mail">
+      <extensionElements>
+        <activiti:field name="from" stringValue="erwin@edegier.nl" />
+        <activiti:field name="to" expression="erwin@edegier.nl" />
+        <activiti:field name="subject" expression="Your order has been shipped" />
+        <activiti:field name="html">
+          <activiti:expression>
+            <![CDATA[
+          <html>
+            <body>
+             test email
+            </body>
+          </html>
+        ]]>
+          </activiti:expression>
+        </activiti:field>
+      </extensionElements>
+    </serviceTask>
+    <sequenceFlow id="flow4" sourceRef="sendMail" targetRef="theEnd"></sequenceFlow>
     <endEvent id="theEnd"></endEvent>
   </process>
-  <bpmndi:BPMNDiagram id="BPMNDiagram_oneTaskProcess">
-    <bpmndi:BPMNPlane bpmnElement="oneTaskProcess" id="BPMNPlane_oneTaskProcess">
-      <bpmndi:BPMNShape bpmnElement="theStart" id="BPMNShape_theStart">
-        <omgdc:Bounds height="35.0" width="35.0" x="0.0" y="15.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="theTask" id="BPMNShape_theTask">
-        <omgdc:Bounds height="60.0" width="100.0" x="80.0" y="0.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="theTask2" id="BPMNShape_theTask2">
-        <omgdc:Bounds height="60.0" width="100.0" x="230.0" y="0.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape bpmnElement="theEnd" id="BPMNShape_theEnd">
-        <omgdc:Bounds height="35.0" width="35.0" x="380.0" y="15.0"></omgdc:Bounds>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNEdge bpmnElement="flow1" id="BPMNEdge_flow1">
-        <omgdi:waypoint x="35.0" y="32.0"></omgdi:waypoint>
-        <omgdi:waypoint x="42.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="42.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="80.0" y="30.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow2" id="BPMNEdge_flow2">
-        <omgdi:waypoint x="180.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="192.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="192.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="230.0" y="30.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge bpmnElement="flow3" id="BPMNEdge_flow3">
-        <omgdi:waypoint x="330.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="342.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="342.0" y="30.0"></omgdi:waypoint>
-        <omgdi:waypoint x="380.0" y="32.0"></omgdi:waypoint>
-      </bpmndi:BPMNEdge>
-    </bpmndi:BPMNPlane>
-  </bpmndi:BPMNDiagram>
 </definitions>

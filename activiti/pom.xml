@@ -16,7 +16,17 @@
         <dependency>
             <groupId>org.activiti</groupId>
             <artifactId>spring-boot-starter-basic</artifactId>
-            <version>5.17.0</version>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>spring-boot-starter-rest-api</artifactId>
+            <version>${activiti.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+            <version>${activiti.version}</version>
         </dependency>
         <dependency>
             <groupId>com.h2database</groupId>
